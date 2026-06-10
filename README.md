@@ -1,18 +1,47 @@
-# Enhanced Chip-8 Emulator in Python + Pygame
+# Enhanced Chip-8 Emulator & Visual Dashboard
 
-A premium, cycle-accurate Chip-8 interpreter written in Python using Pygame. Features a retro-futuristic dark mode visual dashboard, active keypad visualization, save/load state functionality, and an interactive CLI debugger.
-
-## Features
-
-- **Cycle-Accurate Timing**: Models instruction execution cycles closely and handles 60 Hz timers using delta timing.
-- **Modern Dashboard UI**: Rendered in a high-contrast Neon Cyan design with live status lights, PC/I register counters, and an interactive keyboard map.
-- **Keypad Matrix Visualization**: Renders a 4x4 keypad grid dynamically, lighting up keys in real-time as you press them on your keyboard.
-- **Save/Load State**: Fast binary state serialization powered by Python's `pickle`.
-- **Asynchronous CLI Debugger**: A full command-line debugger running on a background thread. Step instructions, set breakpoints, read registers, and inspect memory without freezing the GUI.
+A premium, cycle-accurate Chip-8 interpreter written in Python using Pygame. Features a retro-futuristic dark mode visual dashboard, active keypad matrix visualization, instant save/load states, and a multi-threaded asynchronous CLI debugger.
 
 ---
 
-## Keyboard Keypad Mapping
+## Live Online Deployment & Local Performance
+
+### 🌐 Play Online (WebAssembly)
+The project is deployed and playable directly in your web browser:
+👉 **[https://iamujjwal69.github.io/chip8-emu-py/](https://iamujjwal69.github.io/chip8-emu-py/)**
+
+*Note: The web version is compiled using Pygbag to run Python inside WebAssembly. Due to browser virtualization overhead and WebGL translation, you may experience minor audio latency or lag in the browser.*
+
+### 💻 Local Desktop Execution (Recommended / Optimized)
+For the most **optimized, lag-free, and high-performance** experience with zero-latency audio and graphics, running it locally as a native desktop application is highly recommended.
+
+---
+
+## Features
+
+- **Optimized Local Execution**: Low-level instructions execute natively in Python for a fluid 60 FPS experience.
+- **Visual Dashboard**: Designed with a glowing cyber-cyan interface displaying realtime registers (PC and I) and program status indicators.
+- **Keypad Matrix Tracking**: Renders a live 4x4 keypad grid on the dashboard, lighting up keys dynamically as they are pressed.
+- **Binary State Serialization**: Press `F5` / `F6` to instantly serialize (save) and deserialize (load) the emulator's state utilizing Python's `pickle`.
+- **Asynchronous CLI Debugger**: Toggle with `F12` to enter a threaded console command-line loop. Step cycles, inspect memory, list stack levels, and set execution breakpoints.
+- **CI/CD Pipeline**: GitHub Actions automatically triggers on pushes to `main` to build WebAssembly assets using Pygbag and deploy to GitHub Pages.
+
+---
+
+## Game Controls (Tetris)
+
+The default game loaded is **Tetris** (`roms/tetris.ch8`). Use the following keyboard mappings to control the game:
+
+| Keyboard Key | Action |
+|---|---|
+| **`Q`** (Key 4) | Move Block Left |
+| **`E`** (Key 6) | Move Block Right |
+| **`W`** (Key 5) | Rotate Block |
+| **`S`** (Key 8) | Fast Drop Block |
+
+---
+
+## Keyboard Keypad Mapping Matrix
 
 Standard Chip-8 keypads are arranged in a 4x4 hexadecimal grid. The mapping on a standard QWERTY keyboard is as follows:
 
@@ -43,7 +72,7 @@ When the CLI debugger is toggled on (`F12`), the emulator pauses execution and p
 | `help` | `h` | List all available debugger commands |
 | `step` | `s` | Execute exactly one instruction cycle |
 | `continue` | `c` | Resume normal execution (closes debugger) |
-| `break <addr>` | `b <addr>` | Set a breakpoint at a hex address (e.g. `b 20a` or `break 0x208`) |
+| `break <addr>` | `b <addr>` | Set a breakpoint at a hex address (e.g. `b 200` or `break 0x228`) |
 | `delbreak <addr>`| `d <addr>` | Delete breakpoint at specified hex address |
 | `breakpoints` | `bl` | List all active breakpoints |
 | `regs` | `r` | Print values of PC, I, SP, DT, ST and all registers V0-VF |
@@ -53,7 +82,7 @@ When the CLI debugger is toggled on (`F12`), the emulator pauses execution and p
 
 ---
 
-## Prerequisites & Installation
+## Prerequisites & Installation (Local Server)
 
 1. Ensure **Python 3.8+** is installed on your system.
 2. Install dependencies:
@@ -61,14 +90,14 @@ When the CLI debugger is toggled on (`F12`), the emulator pauses execution and p
    pip install -r requirements.txt
    ```
 
-## Running the Emulator
+## Running the Emulator Locally
 
-Run the emulator with the default IBM Logo test ROM:
+To run the emulator with the default game (Tetris):
 ```bash
 python main.py
 ```
 
-To load a custom ROM:
+To load a custom ROM (e.g. IBM Logo):
 ```bash
-python main.py path/to/your_rom.ch8
+python main.py roms/ibm_logo.ch8
 ```
