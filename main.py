@@ -121,7 +121,7 @@ async def main():
     cpu = Chip8()
     
     # Load ROM
-    rom_path = "roms/ibm_logo.ch8"
+    rom_path = "roms/tetris.ch8"
     if len(sys.argv) > 1:
         rom_path = sys.argv[1]
         
@@ -132,8 +132,8 @@ async def main():
         print(f"Failed to load ROM: {e}")
         # Try loading default
         try:
-            cpu.load_rom("roms/ibm_logo.ch8")
-            print("Loaded fallback ROM: roms/ibm_logo.ch8")
+            cpu.load_rom("roms/tetris.ch8")
+            print("Loaded fallback ROM: roms/tetris.ch8")
         except Exception:
             pass
 
