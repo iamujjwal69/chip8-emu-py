@@ -101,3 +101,17 @@ To load a custom ROM (e.g. IBM Logo):
 ```bash
 python main.py roms/ibm_logo.ch8
 ```
+
+---
+
+## How to List This on Your Resume
+
+If you are showcasing this project on your portfolio or resume, here is a suggested layout:
+
+### **Enhanced CHIP-8 Emulator & Interactive Debugger**
+* **Technologies**: Python, Pygame, NumPy, WebAssembly (Pygbag), GitHub Actions, Git
+* **Key Achievements**:
+  * **Low-Level Hardware Simulation**: Simulated a CPU with 16 registers, call stack, program counters, 4KB RAM, and mapped all 35 machine opcodes.
+  * **Asynchronous Multi-Threaded Debugging**: Programmed a multi-threaded, asynchronous CLI debugger on a background thread for live register inspection, breakpoint tracking, and non-blocking instruction stepping.
+  * **State Serialization**: Created binary state serialization (quick save/load) utilizing `pickle` to capture and recover system memory states.
+  * **CI/CD Build Pipeline**: Configured a CI/CD GitHub Actions workflow compiling the project to WebAssembly (WASM) to automatically deploy to GitHub Pages on commit pushes.
