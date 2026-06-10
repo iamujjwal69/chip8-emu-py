@@ -1,6 +1,7 @@
 import pygame
 import sys
 import numpy as np
+import asyncio
 from chip8 import Chip8
 from debugger import Debugger
 from savestate import save_state, load_state
@@ -99,7 +100,7 @@ def render_display(screen, display):
                 pygame.draw.rect(screen, PIXEL_ON, 
                                  (SCREEN_X + x * SCREEN_SCALE, SCREEN_Y + y * SCREEN_SCALE, SCREEN_SCALE, SCREEN_SCALE))
 
-def main():
+async def main():
     pygame.init()
     pygame.mixer.init(frequency=44100, size=-16, channels=1)
     
@@ -273,6 +274,7 @@ def main():
         
         # Render update
         pygame.display.flip()
+        await asyncio.sleep(0)
         clock.tick(60)
         
     # Cleanup on close
@@ -281,4 +283,4 @@ def main():
     sys.exit()
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
