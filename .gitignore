@@ -1,0 +1,14 @@
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Local Save States
+*.ch8state
+
+# PyInstaller / Packaging build artifacts
+build/
+dist/
+*.spec
